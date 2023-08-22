@@ -5,12 +5,12 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    cardano-parts.url = "github:input-output-hk/cardano-parts";
+    cardano-parts.url = "github:input-output-hk/cardano-parts/sl/migrate-jobs-from-world";
     cardano-parts.inputs.cardano-node.follows = "cardano-node";
     cardano-node.url = "github:input-output-hk/cardano-node/nfrisby/preparing-8.3.0-pre";
 
     cardano-parts.inputs.iohk-nix.follows = "iohk-nix";
-    iohk-nix.url = "github:input-output-hk/iohk-nix/sl/new-conway-genesis";
+    iohk-nix.url = "github:input-output-hk/iohk-nix";
   };
 
   outputs = inputs: let
@@ -26,6 +26,7 @@
           inputs.cardano-parts.flakeModules.pkgs
           inputs.cardano-parts.flakeModules.shell
           inputs.cardano-parts.flakeModules.entrypoints
+          inputs.cardano-parts.flakeModules.jobs
         ];
       systems = ["x86_64-linux"];
       debug = true;
