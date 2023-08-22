@@ -67,6 +67,11 @@ stop:
     rm cardano.pid
   fi
 
+start:
+  #!/usr/bin/env bash
+  export BULK_CREDS=state-demo/bulk-creds.json
+  DATA_DIR=state-demo NODE_CONFIG=state-demo/node-config.json NODE_TOPOLOGY=state-demo/topology.json SOCKET_PATH=./node.socket nohup nix run .#run-cardano-node & echo $! > cardano.pid &
+
 sync-status:
   cardano-cli query tip --testnet-magic 42
 
