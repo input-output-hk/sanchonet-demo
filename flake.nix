@@ -5,9 +5,11 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    cardano-parts.url = "github:input-output-hk/cardano-parts/sl/migrate-jobs-from-world";
+    cardano-parts.url = "github:input-output-hk/cardano-parts/sl/debug";
     cardano-parts.inputs.cardano-node.follows = "cardano-node";
     cardano-node.url = "github:input-output-hk/cardano-node/nfrisby/preparing-8.3.0-pre";
+    #cardano-node.url = "github:input-output-hk/cardano-node/sl/demo";
+    cardano-cli.url = "github:input-output-hk/cardano-cli/newhoggy/put-double-delegatee-parser-first";
 
     cardano-parts.inputs.iohk-nix.follows = "iohk-nix";
     iohk-nix.url = "github:input-output-hk/iohk-nix";
