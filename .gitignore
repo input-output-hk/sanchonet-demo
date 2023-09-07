@@ -22,3 +22,6 @@ result*
 state-*
 *.out
 *.pid
+*.socket
+*.cbor
+*.json

@@ -11,7 +11,11 @@ lint:
 show-flake:
   nix flake show --allow-import-from-derivation
 
-run:
+run-sancho:
+  #!/usr/bin/env bash
+  DEBUG=true DATA_DIR=~/.local/share/cardano ENVIRONMENT=sanchonet SOCKET_PATH="$CARDANO_NODE_SOCKET_PATH" nix run .#run-cardano-node
+
+run-demo:
   #!/usr/bin/env bash
   echo stopping cardano-node
   just stop
@@ -147,22 +151,22 @@ submit-vote-drep actiontx actionid decision:
   export ACTION_TX_INDEX={{actionid}}
   export DECISION={{decision}}
   ROLE=drep ERA="--conway-era" PAYMENT_KEY=state-demo/utxo-keys/rich-utxo VOTE_KEY=state-demo/dreps/drep-1 TESTNET_MAGIC=42 DEBUG=true nix run .#job-submit-vote
-  sleep 15
+  sleep 30
   ROLE=drep ERA="--conway-era" PAYMENT_KEY=state-demo/utxo-keys/rich-utxo VOTE_KEY=state-demo/dreps/drep-2 TESTNET_MAGIC=42 DEBUG=true nix run .#job-submit-vote
-  sleep 15
+  sleep 30
 
 register-drep:
   #!/usr/bin/env bash
   DREP_DIR=state-demo/dreps VOTING_POWER=123456789 INDEX=1 POOL_KEY=state-demo/stake-pools/sp-1-cold ERA="--conway-era" PAYMENT_KEY=state-demo/utxo-keys/rich-utxo TESTNET_MAGIC=42 DEBUG=true nix run .#job-register-drep
-  sleep 15
+  sleep 30
   DREP_DIR=state-demo/dreps VOTING_POWER=987654321 INDEX=2 POOL_KEY=state-demo/stake-pools/sp-2-cold ERA="--conway-era" PAYMENT_KEY=state-demo/utxo-keys/rich-utxo TESTNET_MAGIC=42 DEBUG=true nix run .#job-register-drep
 
 delegate-drep:
   #!/usr/bin/env bash
   DREP_KEY=state-demo/dreps/drep-1 STAKE_KEY=state-demo/stake-pools/sp-1-owner-stake POOL_KEY=state-demo/stake-pools/sp-1-cold ERA="--conway-era" PAYMENT_KEY=state-demo/utxo-keys/rich-utxo TESTNET_MAGIC=42 DEBUG=true nix run .#job-delegate-drep
-  sleep 15
+  sleep 30
   DREP_KEY=state-demo/dreps/drep-1 STAKE_KEY=state-demo/stake-pools/sp-2-owner-stake POOL_KEY=state-demo/stake-pools/sp-2-cold ERA="--conway-era" PAYMENT_KEY=state-demo/utxo-keys/rich-utxo TESTNET_MAGIC=42 DEBUG=true nix run .#job-delegate-drep
-  sleep 15
+  sleep 30
   DREP_KEY=state-demo/dreps/drep-1 STAKE_KEY=state-demo/stake-pools/sp-3-owner-stake POOL_KEY=state-demo/stake-pools/sp-3-cold ERA="--conway-era" PAYMENT_KEY=state-demo/utxo-keys/rich-utxo TESTNET_MAGIC=42 DEBUG=true nix run .#job-delegate-drep
 
 demo-drep:
