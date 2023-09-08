@@ -55,11 +55,11 @@ run-demo:
   sleep 320
   echo "forking to babbage..."
   just sync-status
-  MAJOR_VERSION=7 ERA="--alonzo-era" DEBUG=true nix run .#job-update-proposal-hard-fork
+  MAJOR_VERSION=7 ERA="--alonzo-era" nix run .#job-update-proposal-hard-fork
   sleep 320
   echo "forking to babbage (intra-era)..."
   just sync-status
-  MAJOR_VERSION=8 ERA="--babbage-era" nix run .#job-update-proposal-hard-fork
+  MAJOR_VERSION=8 ERA="--babbage-era" DEBUG=true nix run .#job-update-proposal-hard-fork
   sleep 320
   echo "forking to conway..."
   just sync-status
@@ -69,6 +69,8 @@ run-demo:
   echo -e "\n\n"
   echo "In conway era..."
   echo -e "\n\n"
+
+demo-vote:
   echo "Checking Constitution Hash..."
   echo -e "\n\n"
   cardano-cli query constitution-hash --testnet-magic 42
