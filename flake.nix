@@ -5,7 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    cardano-parts.url = "github:input-output-hk/cardano-parts/sl/sancho-reset";
+    cardano-parts.url = "github:input-output-hk/cardano-parts/monitoring";
     cardano-node-ng.url = "github:input-output-hk/cardano-node/8.3.1-pre";
     cardano-cli-ng.url = "github:input-output-hk/cardano-cli/cardano-cli-8.7.0.0";
   };
