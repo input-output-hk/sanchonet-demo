@@ -84,7 +84,7 @@ vote-constitution:
   echo "Submitting change to constitution..."
   echo -e "\n\n"
   sleep 2
-  ACTION=create-constitution ERA="--conway-era" PAYMENT_KEY="$KEY_DIR"/utxo-keys/rich-utxo STAKE_KEY=state-demo/stake-pools/no-deploy/sancho1-owner-stake TESTNET_MAGIC=42 DEBUG=true nix run .#job-submit-gov-action -- "--constitution-text" '"We the people of Barataria abide by these statutes: 1. Flat Caps are permissible, but cowboy hats are the traditional atire"' "--constitution-url" "https://proposals.sancho.network/1"
+  ACTION=create-constitution ERA="--conway-era" PAYMENT_KEY="$KEY_DIR"/utxo-keys/rich-utxo STAKE_KEY=state-demo/stake-pools/no-deploy/sancho1-owner-stake TESTNET_MAGIC=42 DEBUG=true nix run .#job-submit-gov-action -- "--constitution-anchor-metadata-file" '<(echo "We the people of Barataria abide by these statutes: 1. Flat Caps are permissible, but cowboy hats are the traditional atire")' "--constitution-anchor-url" "https://proposals.sancho.network/1"
   sleep 10
   echo -e "\n\n"
   echo "Voting Unanimous with dreps"
@@ -101,7 +101,7 @@ vote-treasury:
   echo "Submitting treasury proposal..."
   echo -e "\n\n"
   sleep 2
-  ACTION=create-treasury-withdrawal ERA="--conway-era" PAYMENT_KEY="$KEY_DIR"/utxo-keys/rich-utxo STAKE_KEY=state-demo/stake-pools/no-deploy/sancho1-owner-stake TESTNET_MAGIC=42 DEBUG=true nix run .#job-submit-gov-action -- --stake-verification-key-file state-demo/dreps/stake-1.vkey --transfer 5000000
+  ACTION=create-treasury-withdrawal ERA="--conway-era" PAYMENT_KEY="$KEY_DIR"/utxo-keys/rich-utxo STAKE_KEY=state-demo/stake-pools/no-deploy/sancho1-owner-stake TESTNET_MAGIC=42 DEBUG=true nix run .#job-submit-gov-action -- --funds-receiving-stake-verification-key-file state-demo/dreps/stake-1.vkey --transfer 5000000
   sleep 10
   echo -e "\n\n"
   echo "Voting Unanimous with dreps"
@@ -124,14 +124,14 @@ vote-cc:
   echo "Submitting CC committee proposal..."
   echo -e "\n\n"
   sleep 10
-  ACTION=create-new-committee ERA="--conway-era" PAYMENT_KEY="$KEY_DIR"/utxo-keys/rich-utxo STAKE_KEY=state-demo/stake-pools/no-deploy/sancho1-owner-stake TESTNET_MAGIC=42 DEBUG=true nix run .#job-submit-gov-action -- --add-cc-cold-verification-key-file state-demo/cc/cold-1.vkey --epoch 1000 --quorum 0
+  ACTION=update-committee ERA="--conway-era" PAYMENT_KEY="$KEY_DIR"/utxo-keys/rich-utxo STAKE_KEY=state-demo/stake-pools/no-deploy/sancho1-owner-stake TESTNET_MAGIC=42 DEBUG=true nix run .#job-submit-gov-action -- --add-cc-cold-verification-key-file state-demo/cc/cold-1.vkey --epoch 1000 --quorum 0
   sleep 20
   echo -e "\n\n"
   echo "Voting Unanimous with dreps"
   echo -e "\n\n"
-  just submit-vote-drep $(cardano-cli transaction txid --tx-file tx-create-new-committee.txsigned) 0 yes
+  just submit-vote-drep $(cardano-cli transaction txid --tx-file tx-update-committee.txsigned) 0 yes
   sleep 10
-  just submit-vote-spo $(cardano-cli transaction txid --tx-file tx-create-new-committee.txsigned) 0 yes
+  just submit-vote-spo $(cardano-cli transaction txid --tx-file tx-update-committee.txsigned) 0 yes
 
 stop:
   #!/usr/bin/env bash

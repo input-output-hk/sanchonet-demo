@@ -3,11 +3,11 @@
     "CHaP": {
       "flake": false,
       "locked": {
-        "lastModified": 1696532530,
-        "narHash": "sha256-Tabp1I371941jDRh+5X7/zp4cxKACt3H4hrXR5TdA8Y=",
+        "lastModified": 1698409315,
+        "narHash": "sha256-0h8SwdLnp/c02K9dXMlT37nTtmhgA1hKVaMjHLEtFYE=",
         "owner": "input-output-hk",
         "repo": "cardano-haskell-packages",
-        "rev": "6d33ceace68c32707cb6a5d08483dd7c35059f31",
+        "rev": "9313f1f20599a693e4828600b67a19dbf7db2e30",
         "type": "github"
       },
       "original": {
@@ -20,11 +20,11 @@
     "CHaP_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1696538731,
-        "narHash": "sha256-oTsPiABmN7mw9hctagxzNcIDtvmyK4EuBzvMD2iXeeQ=",
+        "lastModified": 1698441381,
+        "narHash": "sha256-zFDjPseeYbCQQmsnCdDzRdMiRCrjwO+2oHmrFZoE4Vg=",
         "owner": "input-output-hk",
         "repo": "cardano-haskell-packages",
-        "rev": "4276a203ed968d067b6c31c943b5bae5fc2ec4a2",
+        "rev": "f6076612f80e9e215f86b587e5f83087e980d3db",
         "type": "github"
       },
       "original": {
@@ -427,11 +427,11 @@
     },
     "capkgs": {
       "locked": {
-        "lastModified": 1696599025,
-        "narHash": "sha256-Rtrj6kiHgNmi1+bt7uL20aYP9lzeUldUbuMMQ3H51Us=",
+        "lastModified": 1697751373,
+        "narHash": "sha256-sJZT0Cvh/bLAX4JsDRT4nURS46baG79ZCpMLf/2QUvg=",
         "owner": "input-output-hk",
         "repo": "capkgs",
-        "rev": "ec93e7459867376b132d548a90dd1823ce6674bc",
+        "rev": "b884014c67c72c86e81cd26dff766bc2cf92e79c",
         "type": "github"
       },
       "original": {
@@ -481,34 +481,51 @@
         ]
       },
       "locked": {
-        "lastModified": 1696536976,
-        "narHash": "sha256-S4qtzBicAHyMsh6H61cyWV6dh3+HkfrIq2HDe3pBem4=",
+        "lastModified": 1698439879,
+        "narHash": "sha256-JRQFBVInm1OjPtOJaz0INTbQZHofd4n4KVjkeNomh78=",
         "owner": "input-output-hk",
         "repo": "cardano-cli",
-        "rev": "b62266fa0d6d6bfd4ff71536deb478c74f9f3997",
+        "rev": "d4eaabdcde1f650fee17ec6b31906c0f2913f0d8",
         "type": "github"
       },
       "original": {
         "owner": "input-output-hk",
-        "ref": "cardano-cli-8.12.0.0",
+        "ref": "cardano-cli-8.13.0.0",
         "repo": "cardano-cli",
         "type": "github"
       }
     },
-    "cardano-cli-ng-service": {
+    "cardano-db-sync-schema": {
       "flake": false,
       "locked": {
-        "lastModified": 1691168478,
-        "narHash": "sha256-JurqewSSHOuNzobzUxbfNDhKnSN9BK31y39pQM+H7+M=",
+        "lastModified": 1688568916,
+        "narHash": "sha256-XTGTi3PzCcbLL+63JSXTe7mQmGKB0YgEoW1VpqdX2d0=",
         "owner": "input-output-hk",
-        "repo": "cardano-cli",
-        "rev": "aebdcce52df97072c54858a99a287bb4a2f9acfe",
+        "repo": "cardano-db-sync",
+        "rev": "6e69a80797f2d68423b25ca7787e81533b367e42",
         "type": "github"
       },
       "original": {
         "owner": "input-output-hk",
-        "ref": "cardano-cli-8.5.0.0-nix",
-        "repo": "cardano-cli",
+        "ref": "13.1.1.3",
+        "repo": "cardano-db-sync",
+        "type": "github"
+      }
+    },
+    "cardano-db-sync-schema-ng": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696880055,
+        "narHash": "sha256-DyXShZwnDMnAC8Op+gBbC52ybtorPTj2d00hZRditMo=",
+        "owner": "input-output-hk",
+        "repo": "cardano-db-sync",
+        "rev": "d2227a15d95a3bd24ee3b4aff6e25085091b279f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "input-output-hk",
+        "ref": "sancho-2-0-0",
+        "repo": "cardano-db-sync",
         "type": "github"
       }
     },
@@ -526,22 +543,6 @@
         "owner": "input-output-hk",
         "ref": "13.1.1.3",
         "repo": "cardano-db-sync",
-        "type": "github"
-      }
-    },
-    "cardano-faucet-service": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1692239482,
-        "narHash": "sha256-2WxlV8mW+IyDGhehjKiihunyXZ16OWnypX0dms53kX0=",
-        "owner": "input-output-hk",
-        "repo": "cardano-faucet",
-        "rev": "0eb6ecf575112c715211af7d08c5de8be2561c38",
-        "type": "github"
-      },
-      "original": {
-        "owner": "input-output-hk",
-        "repo": "cardano-faucet",
         "type": "github"
       }
     },
@@ -591,33 +592,16 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1696549777,
-        "narHash": "sha256-ONCnN1fLtYJB9kXDlUbF6nIjTnlqvI7kfppftrOOWAY=",
+        "lastModified": 1698533252,
+        "narHash": "sha256-4h5jQ3EeNLC2VrOx5oyKKk98Nvs4165EtkBWKqMjaSk=",
         "owner": "input-output-hk",
         "repo": "cardano-node",
-        "rev": "f1ce770834bf7150ca29cb647065c9e62d39be1a",
+        "rev": "29a78091a2edca8ff4aaa0b19abf1ecc5baa3a69",
         "type": "github"
       },
       "original": {
         "owner": "input-output-hk",
-        "ref": "8.5.0-pre",
-        "repo": "cardano-node",
-        "type": "github"
-      }
-    },
-    "cardano-node-ng-service": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1691329439,
-        "narHash": "sha256-CPB2O5/QeQrV8EQQwEICTJQE1cp3KeUEh43ZICbE338=",
-        "owner": "input-output-hk",
-        "repo": "cardano-node",
-        "rev": "a29ee68ba2c850cd50be39a3105ef191cfbc41d5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "input-output-hk",
-        "ref": "8.2.1-pre",
+        "ref": "td/8.6",
         "repo": "cardano-node",
         "type": "github"
       }
@@ -643,10 +627,9 @@
       "inputs": {
         "auth-keys-hub": "auth-keys-hub",
         "capkgs": "capkgs",
-        "cardano-cli-ng-service": "cardano-cli-ng-service",
+        "cardano-db-sync-schema": "cardano-db-sync-schema",
+        "cardano-db-sync-schema-ng": "cardano-db-sync-schema-ng",
         "cardano-db-sync-service": "cardano-db-sync-service",
-        "cardano-faucet-service": "cardano-faucet-service",
-        "cardano-node-ng-service": "cardano-node-ng-service",
         "cardano-node-service": "cardano-node-service",
         "cardano-wallet-service": "cardano-wallet-service",
         "colmena": "colmena",
@@ -666,16 +649,16 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1696605940,
-        "narHash": "sha256-RwX5REK6W+GRqpCuMxHJjtYxni06m5bY3BYwWJda5Uw=",
+        "lastModified": 1698540806,
+        "narHash": "sha256-Go9FoGAfruFisLgyJAlb504o95CDLtqu+MGuko0/Ic8=",
         "owner": "input-output-hk",
         "repo": "cardano-parts",
-        "rev": "1693b2f4474b6b7ce5996c387aa401fabaf9d826",
+        "rev": "7c43b0e3713a9808640ebc143146b3810837a06f",
         "type": "github"
       },
       "original": {
         "owner": "input-output-hk",
-        "ref": "sl/8.5.0-scripts",
+        "ref": "sl/8.6.0-scripts",
         "repo": "cardano-parts",
         "type": "github"
       }
@@ -2195,15 +2178,16 @@
         "sodium": "sodium_4"
       },
       "locked": {
-        "lastModified": 1696471795,
-        "narHash": "sha256-aNNvjUtCGXaXSp5M/HSj1SOeLjqLyTRWYbIHqAEeUp0=",
+        "lastModified": 1697587800,
+        "narHash": "sha256-PyEZ1spurwbn76XO0UGmailCSGvadnLse0Z/fRT3wOI=",
         "owner": "input-output-hk",
         "repo": "iohk-nix",
-        "rev": "91f16fa8acb58b312f94977715c630d8bf77e33e",
+        "rev": "665eed098bf0fd980b9cf1639ba48400df3e602b",
         "type": "github"
       },
       "original": {
         "owner": "input-output-hk",
+        "ref": "mig-sancho",
         "repo": "iohk-nix",
         "type": "github"
       }
@@ -3196,11 +3180,11 @@
     },
     "nixpkgs-unstable_4": {
       "locked": {
-        "lastModified": 1691371061,
-        "narHash": "sha256-BxPbPVlBIoneaXIBiHd0LVzA+L4nmvFCNBU6TmQAiMM=",
+        "lastModified": 1696577711,
+        "narHash": "sha256-94VRjvClIKDym1QRqPkX5LTQoAwZ1E6QE/3dWtOXSIQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5068bc8fe943bde3c446326da8d0ca9c93d5a682",
+        "rev": "a2eb207f45e4a14a1e3019d9e3863d1e208e2295",
         "type": "github"
       },
       "original": {

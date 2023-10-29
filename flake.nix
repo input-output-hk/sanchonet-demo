@@ -5,9 +5,9 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    cardano-parts.url = "github:input-output-hk/cardano-parts/sl/8.5.0-scripts";
-    cardano-node-ng.url = "github:input-output-hk/cardano-node/8.5.0-pre";
-    cardano-cli-ng.url = "github:input-output-hk/cardano-cli/cardano-cli-8.12.0.0";
+    cardano-parts.url = "github:input-output-hk/cardano-parts/sl/8.6.0-scripts";
+    cardano-node-ng.url = "github:input-output-hk/cardano-node/td/8.6";
+    cardano-cli-ng.url = "github:input-output-hk/cardano-cli/cardano-cli-8.13.0.0";
   };
 
   outputs = inputs: let

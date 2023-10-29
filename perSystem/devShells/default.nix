@@ -11,6 +11,7 @@ flake: {
     cardano-parts.shell.test.defaultVars = {
       CARDANO_NODE_SOCKET_PATH = "./node.socket";
       USE_ENCRYPTION = false;
+      UNSTABLE = true;
     };
     cardano-parts.shell.global.defaultHooks = ''
       alias cardano-node=cardano-node-ng
