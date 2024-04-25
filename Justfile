@@ -17,7 +17,7 @@ show-flake:
 
 run-sancho:
   #!/usr/bin/env bash
-  DATA_DIR=~/.local/share/cardano ENVIRONMENT=sanchonet SOCKET_PATH="./sancho-public/node.socket" nix run .#run-cardano-node
+  MITHRIL_DISABLE=true DATA_DIR=~/.local/share/cardano ENVIRONMENT=sanchonet SOCKET_PATH="./sancho-public/node.socket" nix run .#run-cardano-node
 
 run-demo:
   #!/usr/bin/env bash
@@ -191,8 +191,9 @@ query-rich-utxo:
 
 query-gov-status:
   #!/usr/bin/env bash
-  cardano-cli-ng query governance ...
-
+  cardano-cli-ng conway query gov-state --out-file gov-state.json
+  cardano-cli-ng conway query drep-state --all-dreps --out-file drep-state.json
+  cardano-cli-ng conway query drep-stake-distribution --all-dreps --out-file drep-stake-distribution.json
 
 submit-vote-spo actiontx actionid decision:
   #!/usr/bin/env bash
@@ -248,3 +249,4 @@ demo-drep:
   export KEY_DIR="state-demo/envs/custom"
   just submit-action
   ACTIONTX=$(cardano-cli-ng transaction txid --tx-file
+
