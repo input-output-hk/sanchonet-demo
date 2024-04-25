@@ -1,0 +1,125 @@
+#!/usr/bin/env python
+"""Governance Query
+
+Usage:
+    gov-query action-status ACTIONID
+
+Options:
+    -h --help                   Show this screen
+    --version                   Show version
+"""
+
+import sys
+import json
+from docopt import docopt
+
+with open('gov-state.json') as file:
+    gov_state = json.load(file)
+
+with open('drep-state.json') as file:
+    drep_state_unsorted = json.load(file)
+
+pparams = gov_state['currentPParams']
+
+drep_thresholds = pparams['dRepVotingThresholds']
+spo_thresholds = pparams['poolVotingThresholds']
+
+# TODO: move into proposal logic instead of hard coding
+drep_threshold = int(100 * drep_thresholds['ppTechnicalGroup'])
+
+drep_state = {}
+drep_total_stake = 0
+
+cc_total = len(gov_state['committee']['members'])
+cc_threshold = int(100 * gov_state['committee']['threshold']['numerator'] / gov_state['committee']['threshold']['denominator'])
+
+for drep in drep_state_unsorted:
+    drep_type = None
+    drep_hash = None
+    for k,v in drep[0].items():
+        drep_type = k
+        drep_hash = v
+    drep_data = drep[1]
+    stake = drep_data["stake"]
+    if not stake:
+        stake = 0
+    drep_state[drep_hash] = {
+        "type": drep_type,
+        "anchor": drep_data["anchor"],
+        "deposit": drep_data["deposit"],
+        "expiry": drep_data["expiry"],
+        "stake": stake
+    }
+    drep_total_stake += stake
+
+if len(sys.argv) == 1:
+    sys.argv.append('-h')
+
+arguments = docopt(__doc__, version='Governance Tool 0.0')
+if arguments['action-status']:
+    vote_drep_total = drep_total_stake
+    vote_drep = 0
+
+    vote_cc = 0
+    vote_cc_total = cc_total
+    action = arguments['ACTIONID']
+    for proposal in gov_state['proposals']:
+        if proposal['actionId']['txId'] == action.split('#')[0] and proposal['actionId']['govActionIx'] == int(action.split('#')[1]):
+            print('DRep Votes:')
+            for drep,vote in proposal['dRepVotes'].items():
+                key_hash = drep.split('-')[1]
+                if vote == 'VoteYes':
+                    for drep_hash, drep_data in drep_state.items():
+                        if key_hash == drep_hash:
+                            if drep_data['stake'] is not None:
+                                vote_drep += drep_data['stake']
+                            print(key_hash, drep_data['stake'], 'YES')
+                if vote == 'VoteAbstain':
+                    for drep_hash, drep_data in drep_state.items():
+                        if key_hash == drep_hash:
+                            if drep_data['stake'] is not None:
+                                vote_drep_total -= drep_data['stake']
+                            print(key_hash, drep_data['stake'], 'ABSTAIN')
+                if vote == 'VoteNo':
+                    for drep_hash, drep_data in drep_state.items():
+                        if key_hash == drep_hash:
+                            print(key_hash, drep_data['stake'], 'NO')
+            print('CC Votes:')
+            for member,vote in proposal['committeeVotes'].items():
+                key_hash = member.split('-')[1]
+                if vote == 'VoteYes':
+                    vote_cc += 1
+                    print(key_hash, 'YES')
+                if vote == 'VoteAbstain':
+                    vote_cc_total -= 1
+                    print(key_hash, 'ABSTAIN')
+                if vote == 'VoteNo':
+                    print(key_hash, 'NO')
+            # TODO: implement SPO vote counting
+            #print('SPO Votes:')
+            #for spo,vote in proposal['stakePoolVotes'].items():
+            #    key_hash = spo.split('-')[1]
+            #    if vote == 'VoteYes':
+            #        vote_spo += 1
+            #        print(key_hash, 'YES')
+            #    if vote == 'VoteAbstain':
+            #        vote_spo_total -= 1
+            #        print(key_hash, 'ABSTAIN')
+            #    if vote == 'VoteNo':
+            #        print(key_hash, 'NO')
+    print('Summary:')
+    drep_pct = int(100 * vote_drep / vote_drep_total)
+    cc_pct = int(100 * vote_cc / vote_cc_total)
+    if cc_pct > cc_threshold:
+        cc_status = "PASSING"
+    else:
+        cc_status = "NOT PASSING"
+
+    if drep_pct > drep_threshold:
+        drep_status = "PASSING"
+    else:
+        drep_status = "NOT PASSING"
+
+
+    print(f'Voted DREP Stake: {vote_drep} / {vote_drep_total} = {drep_pct}% {drep_status}')
+    print(f'Voted CC: {vote_cc} / {vote_cc_total} = {cc_pct}% {cc_status}')
