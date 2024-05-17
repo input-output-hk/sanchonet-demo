@@ -21,7 +21,13 @@
           USE_ENCRYPTION = false;
           UNSTABLE = true;
         };
-        extraPkgs = [config.packages.run-cardano-node pkgs.asciinema pkgs.fx config.packages.govQuery];
+        extraPkgs = [
+          config.packages.run-cardano-node
+          pkgs.asciinema
+          pkgs.fx
+          config.packages.govQuery
+          config.packages.orchestrator-cli
+        ];
       };
     };
     #cardano-parts.pkgs.cardano-cli = flake.inputs.cardano-cli-ng.legacyPackages.${system}.cardano-cli;
