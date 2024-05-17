@@ -1,5 +1,9 @@
-{
-  perSystem = {pkgs, ...}: {
+flake: {
+  perSystem = {
+    pkgs,
+    system,
+    ...
+  }: {
     packages = {
       govQuery = pkgs.python311Packages.buildPythonApplication {
         pname = "gov-query";
@@ -7,6 +11,7 @@
         src = ./gov-query;
         propagatedBuildInputs = [pkgs.python311Packages.docopt];
       };
+      inherit (flake.inputs.credential-manager.packages.${system}) orchestrator-cli;
     };
   };
 }
