@@ -31,7 +31,7 @@ drep_state = {}
 drep_total_stake = 0
 
 cc_total = len(gov_state['committee']['members'])
-cc_threshold = int(100 * gov_state['committee']['threshold']['numerator'] / gov_state['committee']['threshold']['denominator'])
+cc_threshold = gov_state['committee']['threshold']
 
 for drep in drep_state_unsorted:
     drep_type = None
@@ -40,7 +40,8 @@ for drep in drep_state_unsorted:
         drep_type = k
         drep_hash = v
     drep_data = drep[1]
-    stake = drep_data["stake"]
+    #stake = drep_data["stake"]
+    stake = 0
     if not stake:
         stake = 0
     drep_state[drep_hash] = {
@@ -108,8 +109,14 @@ if arguments['action-status']:
             #    if vote == 'VoteNo':
             #        print(key_hash, 'NO')
     print('Summary:')
-    drep_pct = int(100 * vote_drep / vote_drep_total)
-    cc_pct = int(100 * vote_cc / vote_cc_total)
+    if vote_drep_total == 0:
+        drep_pct = 0
+    else:
+        drep_pct = int(100 * vote_drep / vote_drep_total)
+    if vote_cc_total == 0:
+        cc_pct = 0
+    else:
+        cc_pct = int(100 * vote_cc / vote_cc_total)
     if cc_pct > cc_threshold:
         cc_status = "PASSING"
     else:
