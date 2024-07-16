@@ -1,7 +1,8 @@
-{
+flake: {
   perSystem = {
     config,
     pkgs,
+    system,
     ...
   }: {
     cardano-parts.shell = {
@@ -25,12 +26,13 @@
           config.packages.run-cardano-node
           pkgs.asciinema
           pkgs.fx
+          pkgs.ipfs
           config.packages.govQuery
           config.packages.orchestrator-cli
         ];
       };
     };
-    #cardano-parts.pkgs.cardano-cli = flake.inputs.cardano-cli-ng.legacyPackages.${system}.cardano-cli;
+    cardano-parts.pkgs.cardano-cli = flake.inputs.cardano-cli.legacyPackages.${system}.cardano-cli;
     #cardano-parts.pkgs.cardano-node = flake.inputs.cardano-node-ng.legacyPackages.${system}.cardano-node;
   };
 }

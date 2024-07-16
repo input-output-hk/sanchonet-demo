@@ -15,6 +15,7 @@ result*
 *.cert
 *.txbody
 *.txsigned
+*.mnemonic
 *.proposal
 *.vote
 *.action
@@ -25,3 +26,7 @@ state-*
 *.socket
 *.cbor
 *.json
+/.run
+/sancho-public
+/sanchonet-cc
+/sancho-cc-demo

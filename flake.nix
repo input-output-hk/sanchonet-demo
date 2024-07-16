@@ -5,7 +5,11 @@
     nixpkgs.follows = "cardano-parts/nixpkgs";
     nixpkgs-unstable.follows = "cardano-parts/nixpkgs-unstable";
     flake-parts.follows = "cardano-parts/flake-parts";
-    cardano-parts.url = "github:input-output-hk/cardano-parts/next-2024-05-14";
+    iohkNix.url = "github:input-output-hk/iohk-nix";
+    cardano-parts.url = "github:input-output-hk/cardano-parts/next-2024-07-03";
+    cardano-parts.inputs.iohk-nix.follows = "iohkNix";
+    cardano-parts.inputs.iohk-nix-ng.follows = "iohkNix";
+    cardano-cli.url = "github:intersectmbo/cardano-cli/cardano-cli-9.0.0.1";
     credential-manager.url = "github:intersectmbo/credential-manager";
   };
 
@@ -24,6 +28,7 @@
           inputs.cardano-parts.flakeModules.entrypoints
           inputs.cardano-parts.flakeModules.jobs
           inputs.cardano-parts.flakeModules.lib
+          inputs.cardano-parts.flakeModules.process-compose
         ];
       systems = ["x86_64-linux" "aarch64-darwin"];
       debug = true;
